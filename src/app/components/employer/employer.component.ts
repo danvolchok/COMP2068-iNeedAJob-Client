@@ -12,6 +12,9 @@ export class EmployerComponent implements OnInit {
   constructor(private employerService: EmployerService) { }
 
   employers: any
+  name: string | undefined
+  region: string | undefined
+  description: string | undefined
 
   // fetch all employers from the service
   getEmployers(): void {
@@ -19,6 +22,28 @@ export class EmployerComponent implements OnInit {
       this.employers = response;
     })
    // console.log(this.employers);
+  }
+
+  // create a new employer to be sent to the service
+  addEmployer(): void {
+    let employer = {
+      name: this.name,
+      region: this.region,
+      description: this.description
+    }
+    this.employerService.addEmployer(employer).subscribe(response => {
+      // update list of employers
+      this.getEmployers();
+
+      // clear the form
+      this.clearForm();
+    })
+  }
+
+  clearForm(): void {
+    this.name = undefined
+    this.region = undefined
+    this.description = undefined
   }
 
   // fetch data whenever this component is instantiated

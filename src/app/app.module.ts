@@ -9,6 +9,9 @@ import { EmployerService } from './services/employer.service';
 
 // HttpClientModule is required to make HTTP requests to server API
 import { HttpClientModule } from '@angular/common/http';
+
+// forms for input binding
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule, 
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [EmployerService],
   bootstrap: [EmployerComponent]
