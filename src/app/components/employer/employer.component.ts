@@ -12,6 +12,7 @@ export class EmployerComponent implements OnInit {
   constructor(private employerService: EmployerService) { }
 
   employers: any
+  _id: string | undefined
   name: string | undefined
   region: string | undefined
   description: string | undefined
@@ -26,12 +27,15 @@ export class EmployerComponent implements OnInit {
 
   // create a new employer to be sent to the service
   addEmployer(): void {
+    // create & populate a new employer object
     let employer = {
       name: this.name,
       region: this.region,
       description: this.description
     }
+    // send the new employer to the service
     this.employerService.addEmployer(employer).subscribe(response => {
+      
       // update list of employers
       this.getEmployers();
 
@@ -40,7 +44,37 @@ export class EmployerComponent implements OnInit {
     })
   }
 
+  deleteEmployer(_id: string): void {
+    if (confirm('Are you sure?')) {
+    this.employerService.deleteEmployer(_id).subscribe(response => {
+      this.getEmployers();
+      this.clearForm();
+    })
+  }
+}
+
+  selectEmployer(_id: string, name: string, region: string, description: string): void{
+    this._id = _id
+    this.name = name
+    this.region = region
+    this.description = description
+  }
+
+  updateEmployer(): void {
+    let employer = {
+      _id: this._id,
+      name: this.name,
+      region: this.region,
+      description: this.description
+    }
+    this.employerService.updateEmployer(employer).subscribe(response => {
+      this.getEmployers();
+      this.clearForm();
+    })
+  }
+
   clearForm(): void {
+    this._id = undefined
     this.name = undefined
     this.region = undefined
     this.description = undefined

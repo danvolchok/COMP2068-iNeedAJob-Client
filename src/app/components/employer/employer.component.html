@@ -4,7 +4,7 @@
         <h2>Employers</h2>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let employer of employers">
-                <span class="list-group-item active">{{employer.name}}</span>
+                <a href="#" (click)="selectEmployer(employer._id, employer.name, employer.region, employer.description)"class="list-group-item active">{{employer.name}}</a>
                 <p>{{employer.region}}</p>
                 <p>{{employer.description}}</p>
             </li>
@@ -25,7 +25,10 @@
             <textarea [(ngModel)]="description"></textarea>
         </fieldset>
         <div class="offset-2">
-            <button class="btn btn-primary" (click)="addEmployer()">Save</button>
+            <button class="btn btn-primary m-1" (click)="addEmployer()" *ngIf="!_id">Save</button>
+            <button class="btn btn-primary m-1" (click)="updateEmployer()" *ngIf="_id">Update</button>
+            <button class="btn btn-danger m-1" (click)="deleteEmployer(_id)" *ngIf="_id">Delete</button>
+            <button class="btn btn-secondary m-1" (click)="clearForm()" >Clear</button>
         </div>
     </div>
 </div>
