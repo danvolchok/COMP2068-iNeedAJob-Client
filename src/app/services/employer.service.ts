@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // ref to environment to read the server API URL
+// we modified angular.json to replace the environment.ts file with environment.prod.ts
 import { environment } from 'src/environments/environment';
 
 // HttpsHeaders needed for POST and PUT requests

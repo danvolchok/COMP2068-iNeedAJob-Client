@@ -1,7 +1,7 @@
 <h1>I Need A Job</h1>
 <div class="row">
     <div class="col-6">
-        <h2>Employers</h2>
+        <h2>Local Employers</h2>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let employer of employers">
                 <a href="#" (click)="selectEmployer(employer._id, employer.name, employer.region, employer.description)"class="list-group-item active">{{employer.name}}</a>
